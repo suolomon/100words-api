@@ -1,10 +1,15 @@
 const express = require("express");
 const app = express();
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+dotenv.config();
 
-app.use("/", (req, res) => {
-  console.log("You have reached the backend server!");
-});
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(console.log("Connected to MONGODB"))
+  .catch((err) => console.log(err));
 
+  
 app.listen("5000", () => {
   console.log("Server running on PORT 5000...");
 });
